@@ -1,0 +1,6 @@
+caption always "%{Wb} %H %{Bk}| %{Ck}%-w%50>%{Cb} %n %t %{-}%+w%<%{- Wk}%{Bk} | %=%{Wb} %C "
+defscrollback 5000
+termcapinfo xterm ti@:te@
+termcapinfo mintty ti@:te@
+termcapinfo terminator ti@:te@
+termcapinfo guake ti@:te@
