@@ -31,7 +31,44 @@ fi
 #esac
 
 # Comment in the above and uncomment this below for a color prompt
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+
+# color names for readibility
+reset=$(tput sgr0)
+bold=$(tput bold)
+black=$(tput setaf 0)
+red=$(tput setaf 1)
+green=$(tput setaf 2)
+yellow=$(tput setaf 3)
+blue=$(tput setaf 4)
+magneta=$(tput setaf 5)
+cyan=$(tput setaf 6)
+white=$(tput setaf 7)
+
+COLOR_BROWN='\e[0;33m'
+COLOR_BLUE='\e[0;34m'
+COLOR_GRAY='\e[0;30m'
+COLOR_LIGHT_GRAY='\e[0;37m'
+COLOR_GREEN='\e[0;32m'
+
+#Green if vanilla user
+user_color=$COLOR_GREEN
+
+#Go red if we're root
+[ "$UID" -eq 0 ] && { user_color=$red; }
+
+#hostname_color=$green
+
+case $HOSTNAME in
+  *prod-*) hostname_color='${red}';; # red on *prod-*
+  *acce-*) hostname_color='${yellow}';; # yellow on *[test|acce]-*
+  *test-*) hostname_color='${yellow}';; # yellow on *[test|acce]-*
+  *utv-*) hostname_color='${green}';; # green on *[dev|utv]-*
+  *dev-*) hostname_color='${green}';; # green on *[dev|utv]-*
+  *) hostname_color='${black}';; # green elsewhere
+esac
+
+PS1="\[$user_color\]\u\[$reset\]\[$white\]@\[$bold\]\[$hostname_color\]\h\[$white\]:\[$blue\]\w\[$reset\]\[$white\]\\$\[$reset\] "
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
