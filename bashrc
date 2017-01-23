@@ -107,5 +107,6 @@ alias sl='screen -list'
 alias sa='screen -r $1'
 alias restartpanel='kill $(pgrep unity-panel-ser)'
 alias reload_icons='sudo gtk-update-icon-cache --ignore-theme-index -f -q /usr/share/icons/hicolor/'
+alias notify='/usr/bin/notify-send Terminal "Long-running command finished!" --icon=/usr/share/icons/Humanity/actions/48/dialog-apply.svg'
 
 export EDITOR=vim
